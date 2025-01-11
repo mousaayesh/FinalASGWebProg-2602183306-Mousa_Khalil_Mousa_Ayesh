@@ -9,4 +9,8 @@ class Wallet extends Model
 {
     /** @use HasFactory<\Database\Factories\WalletFactory> */
     use HasFactory;
+
+    public function penggunas(){
+        return $this->hasOne(Pengguna::class);
+    }
 }

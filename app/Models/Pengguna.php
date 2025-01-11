@@ -9,4 +9,8 @@ class Pengguna extends Model
 {
     /** @use HasFactory<\Database\Factories\PenggunaFactory> */
     use HasFactory;
+
+    public function wallets(){
+        return $this->belongsTo(Wallet::class);
+    }
 }

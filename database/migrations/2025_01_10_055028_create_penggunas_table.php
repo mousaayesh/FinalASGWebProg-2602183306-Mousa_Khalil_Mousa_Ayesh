@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('wallet_id')->constrained('wallets');
             $table->enum('gender',['male','female']);
+            $table->string('hobbies');
             $table->string('instagram')->nullable();
             $table->string('phone')->unique();
+            $table->foreignId('wallet_id')->constrained('wallets');
             $table->timestamps();
         });
     }

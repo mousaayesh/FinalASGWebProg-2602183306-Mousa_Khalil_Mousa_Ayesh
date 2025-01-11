@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('penggunas');
             $table->foreignId('receiver_id')->constrained('penggunas');
-            $table->enum('status',['pending','accepted','declined']);
+            $table->string('text');
+            $table->enum('instruction',['message','request']);
+            $table->foreignId('message_id')->constrained('messages');
+            $table->foreignId('friend_id')->constrained('friends');
+            $table->timestamp('notify_time');
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('notifications');
     }
 };

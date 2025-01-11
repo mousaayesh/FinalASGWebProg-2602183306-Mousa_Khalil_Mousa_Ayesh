@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Pengguna;
+use App\Models\Wallet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
  */
 class PenggunaFactory extends Factory
 {
+    protected $model = Pengguna::class;
     /**
      * Define the model's default state.
      *
@@ -20,8 +23,12 @@ class PenggunaFactory extends Factory
         return [
             'name'=>fake()->name(),
             'email'=>fake()->unique()->safeEmail(),
-            'password'=>static::$password ??= Hash::make('password'),
-            'instagram'=>fake()->url()
+            'password'=>Hash::make('password'),
+            'gender'=>fake()->randomElement(['male','female']),
+            'instagram'=>fake()->url(),
+            'phone'=>fake()->phoneNumber(),
+            'hobbies'=>fake()->sentence(3,true),
+            'wallet_id'=>Wallet::factory()
         ];
     }
 }
